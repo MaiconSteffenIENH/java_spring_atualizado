@@ -52,5 +52,5 @@ public class ProfessorController {
         professorService.excluirProfessor(id);
         return "redirect:/professor/listar";
     }
-
+//
 }
