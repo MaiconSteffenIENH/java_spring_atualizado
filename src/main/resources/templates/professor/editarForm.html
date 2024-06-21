@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar professor</title>
+</head>
+<body>
+
+<h1>Editar professor</h1>
+
+<a href="/professor/listar">Voltar para a lista de professores</a><br /><br />
+
+<form action="#" th:action="@{/professor/editar}" th:object="${professor}" method="post">
+    <input type="hidden" name="id" th:field="*{id}" />
+    <label>Nome:</label><br/>
+    <input type="text" name="nome" th:field="*{nome}" /><br />
+    <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+    <input type="submit" value="Salvar" />
+</form>
+
+</body>
+</html>

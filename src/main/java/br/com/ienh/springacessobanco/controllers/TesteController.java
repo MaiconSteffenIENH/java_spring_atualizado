@@ -1,7 +1,6 @@
 package br.com.ienh.springacessobanco.controllers;
 
 
-import br.com.ienh.springacessobanco.entities.Aluno;
 import br.com.ienh.springacessobanco.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

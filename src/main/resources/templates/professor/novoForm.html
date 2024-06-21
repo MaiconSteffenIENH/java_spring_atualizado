@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Aluno</title>
+</head>
+<body>
+
+<h1>Novo professor</h1>
+
+<form action="#" th:action="@{/professor/novo}" th:object="${professor}" method="post">
+    <label>Nome:</label><br/>
+    <input type="text" th:field="*{nome}" /><br />
+    <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+    <input type="submit" value="Salvar" />
+</form>
+
+</body>
+</html>
