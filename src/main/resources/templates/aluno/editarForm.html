@@ -8,6 +8,10 @@
 
 <h1>Editar Aluno</h1>
 
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
 <a href="/aluno/listar">Voltar para a lista de alunos</a><br /><br />
 
 <form action="#" th:action="@{/aluno/editar}" th:object="${aluno}" method="post">
