@@ -1,9 +1,7 @@
 package br.com.ienh.springacessobanco.services;
 
 import br.com.ienh.springacessobanco.dto.CategoriaDTO;
-import br.com.ienh.springacessobanco.dto.ProfessorDTO;
 import br.com.ienh.springacessobanco.entities.Categoria;
-import br.com.ienh.springacessobanco.entities.Professor;
 import br.com.ienh.springacessobanco.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

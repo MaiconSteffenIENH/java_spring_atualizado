@@ -32,11 +32,11 @@ public class Aluno {
                 mappedBy = "aluno")
     private List<Contato> contatos;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="aluno_turma",
-                joinColumns = @JoinColumn(name = "aluno_id"),
-                inverseJoinColumns = @JoinColumn(name = "turma_id"))
-    private List<Turma> turmas;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name="aluno_turma",
+//                joinColumns = @JoinColumn(name = "aluno_id"),
+//                inverseJoinColumns = @JoinColumn(name = "turma_id"))
+//    private List<Turma> turmas;
 
     public Aluno(String nome, String numeroMatricula, String cpf, String endereco, LocalDate nascimento) {
         this.nome = nome;
@@ -104,13 +104,13 @@ public class Aluno {
         this.contatos = contatos;
     }
 
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
-
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
+//    public List<Turma> getTurmas() {
+//        return turmas;
+//    }
+//
+//    public void setTurmas(List<Turma> turmas) {
+//        this.turmas = turmas;
+//    }
 
     @Override
     public String toString() {
