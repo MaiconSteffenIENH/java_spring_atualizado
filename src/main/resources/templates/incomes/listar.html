@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Receitas</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Listagem de Receitas</h1>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Valor</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterar sobre a lista de receitas e exibir cada uma -->
+        <tr th:each="income : ${incomes}">
+            <td th:text="${income.id}"></td>
+            <td th:text="${income.value}"></td>
+            <td th:text="${income.description}"></td>
+            <td th:text="${income.date}"></td>
+            <td th:text="${income.category.name}"></td>
+            <td>
+                <a th:href="@{/incomes/editar/{id}(id=${income.id})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/incomes/excluir/{id}(id=${income.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/incomes/novo" class="btn btn-success">Nova Receita</a>
+</div>
+
+<!-- Bootstrap JS (opcional, se necessário) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Emm2gISB1dNH3pi+0kp0sibJGPNlg2xIlQ" crossorigin="anonymous"></script>
+</body>
+</html>

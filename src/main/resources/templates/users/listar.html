@@ -2,39 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Teste</title>
+    <title>Listar Usuários</title>
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
 
-<div class="container">
-    <h1 class="mt-4">Teste de Usuários</h1>
+<div class="container mt-4">
+    <h1>Listagem de Usuários</h1>
 
-    <p>Veja os detalhes dos usuários abaixo:</p>
-
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped mt-3">
         <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Senha</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
-        <!-- Iterar sobre a lista de usuários e exibir cada um -->
-        <th:block th:each="user : ${users}">
-            <tr>
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.password}"></td>
-            </tr>
-        </th:block>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="@{/users/editar/{id}(id=${user.id})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/users/excluir/{id}(id=${user.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
         </tbody>
     </table>
+
+    <a href="/users/novo" class="btn btn-success">Novo Usuário</a>
 </div>
 
 <!-- Bootstrap JS (opcional, se necessário) -->

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Despesas</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Listagem de Despesas</h1>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Valor</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterar sobre a lista de despesas e exibir cada uma -->
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.id}"></td>
+            <td th:text="${expense.value}"></td>
+            <td th:text="${expense.description}"></td>
+            <td th:text="${expense.date}"></td>
+            <td th:text="${expense.category.name}"></td>
+            <td>
+                <a th:href="@{/expenses/editar/{id}(id=${expense.id})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/expenses/excluir/{id}(id=${expense.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/expenses/novo" class="btn btn-success">Nova Despesa</a>
+</div>
+
+<!-- Bootstrap JS (opcional, se necessário) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Emm2gISB1dNH3pi+0kp0sibJGPNlg2xIlQ" crossorigin="anonymous"></script>
+</body>
+</html>
