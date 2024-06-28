@@ -58,6 +58,7 @@ public class IncomeCategory {
     @Override
     public String toString() {
         return "IncomeCategory{" +
+                "id=" + id +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

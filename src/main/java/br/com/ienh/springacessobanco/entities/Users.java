@@ -71,6 +71,24 @@ public class Users {
         return role;
     }
 
+    //adicionado novo
+
+    public List<Income> getIncomes() {
+        return incomes;
+    }
+
+    public void setIncomes(List<Income> incomes) {
+        this.incomes = incomes;
+    }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(List<Expense> expenses) {
+        this.expenses = expenses;
+    }
+
     public void setRole(String role) {
         this.role = role;
     }

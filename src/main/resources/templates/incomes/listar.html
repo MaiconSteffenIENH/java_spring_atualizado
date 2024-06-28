@@ -24,7 +24,6 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Iterar sobre a lista de receitas e exibir cada uma -->
         <tr th:each="income : ${incomes}">
             <td th:text="${income.id}"></td>
             <td th:text="${income.value}"></td>
@@ -40,6 +39,7 @@
     </table>
 
     <a href="/incomes/novo" class="btn btn-success">Nova Receita</a>
+    <a href="/" class="btn btn-success">Tela inicial</a>
 </div>
 
 <!-- Bootstrap JS (opcional, se necessário) -->
