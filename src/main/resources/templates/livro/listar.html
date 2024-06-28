@@ -32,7 +32,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Ano de Publicação</th>
                     <th>Editora</th>
                     <th>Categoria</th>
                     <th>Autor</th>
@@ -44,10 +43,9 @@
                 <tr th:each="livro : ${livros}">
                     <td th:text="${livro.id}"></td>
                     <td th:text="${livro.titulo}"></td>
-                    <td th:text="${livro.anoPublicacao}"></td>
                     <td th:text="${livro.editora}"></td>
-                    <td th:text="${livro.categoriaId}"></td>
-                    <td th:text="${livro.autorId}"></td>
+                    <td th:text="${livro.categoria_id}"></td>
+                    <td th:text="${livro.autor_id}"></td>
                     <td><a th:href="@{/livro/editar/{id}(id=${livro.id})}" class="btn btn-warning">Editar</a></td>
                     <td><a th:href="@{/livro/excluir/{id}(id=${livro.id})}" class="btn btn-danger">Excluir</a></td>
                 </tr>
