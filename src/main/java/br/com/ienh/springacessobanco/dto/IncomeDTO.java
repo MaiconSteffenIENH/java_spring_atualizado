@@ -1,7 +1,6 @@
 package br.com.ienh.springacessobanco.dto;
 
 import br.com.ienh.springacessobanco.entities.IncomeCategory;
-import br.com.ienh.springacessobanco.entities.Users;
 
 import java.time.LocalDate;
 
@@ -10,18 +9,18 @@ public class IncomeDTO {
     private double value;
     private String description;
     private LocalDate date;
-    private IncomeCategory category;
-    private Users user;
+    private Integer categoryId;
+    private Integer userId;
 
     public IncomeDTO() {}
 
-    public IncomeDTO(Integer id, double value, String description, LocalDate date, IncomeCategory category, Users user) {
+    public IncomeDTO(Integer id, double value, String description, LocalDate date, Integer categoryId, Integer userId) {
         this.id = id;
         this.value = value;
         this.description = description;
         this.date = date;
-        this.category = category;
-        this.user = user;
+        this.categoryId = categoryId;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -56,23 +55,20 @@ public class IncomeDTO {
         this.date = date;
     }
 
-    public IncomeCategory getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(IncomeCategory category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Users getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public void setCategory(IncomeCategoryDTO category) {
-
-    }
 }

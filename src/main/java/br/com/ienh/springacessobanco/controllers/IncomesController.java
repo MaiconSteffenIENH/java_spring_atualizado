@@ -6,8 +6,6 @@ import br.com.ienh.springacessobanco.dto.UserDTO;
 import br.com.ienh.springacessobanco.services.IncomeCategoryService;
 import br.com.ienh.springacessobanco.services.IncomeService;
 import br.com.ienh.springacessobanco.services.UsersService;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,20 +41,11 @@ public class IncomesController {
     }
 
     @PostMapping("/novo")
-    public String novoSalvar(@Valid @ModelAttribute("income") IncomeDTO income, BindingResult bindingResult, @RequestParam("userId") int userId, @RequestParam("categoryId") int categoryId) {
+    public String novoSalvar(@Valid @ModelAttribute("income") IncomeDTO income, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/incomes/novoForm";
         }
-
-        UserDTO user = usersService.obterUserPorId(userId);
-        income.setUser(user);
-
-        IncomeCategoryDTO category = incomeCategoryService.obterIncomeCategoryPorId(categoryId);
-
-        income.setCategory(category);
-
         incomeService.salvarIncome(income);
-
         return "redirect:/incomes/listar";
     }
 
@@ -76,7 +65,6 @@ public class IncomesController {
             model.addAttribute("categories", incomeCategoryService.obterTodos());
             return "/incomes/editarForm";
         }
-
         incomeService.atualizarIncome(incomeDTO);
         return "redirect:/incomes/listar";
     }
