@@ -1,7 +1,6 @@
 package br.com.ienh.springacessobanco.controllers;
 
 import br.com.ienh.springacessobanco.dto.IncomeCategoryDTO;
-import br.com.ienh.springacessobanco.dto.UserDTO;
 import br.com.ienh.springacessobanco.services.IncomeCategoryService;
 import br.com.ienh.springacessobanco.services.UsersService;
 import jakarta.validation.Valid;

@@ -2,11 +2,12 @@ package br.com.ienh.springacessobanco.services;
 
 import br.com.ienh.springacessobanco.dto.ExpenseDTO;
 import br.com.ienh.springacessobanco.entities.Expense;
+import br.com.ienh.springacessobanco.repositories.ExpenseCategoryRepository;
 import br.com.ienh.springacessobanco.repositories.ExpenseRepository;
+import br.com.ienh.springacessobanco.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,14 +15,18 @@ public class ExpenseService {
 
     @Autowired
     ExpenseRepository expenseRepository;
+    @Autowired
+    ExpenseCategoryRepository expenseCategoryRepository;
+    @Autowired
+    UsersRepository usersRepository;
 
     public void salvarExpense(ExpenseDTO expenseDTO) {
         Expense expense = new Expense();
         expense.setValue(expenseDTO.getValue());
         expense.setDescription(expenseDTO.getDescription());
         expense.setDate(expenseDTO.getDate());
-        expense.setCategory(expenseDTO.getCategory());
-        expense.setUser(expenseDTO.getUser());
+        expense.setCategory(expenseCategoryRepository.findById(expenseDTO.getCategoryId()).get());
+        expense.setUser(usersRepository.findById(expenseDTO.getUserId()).get());
         expenseRepository.save(expense);
     }
 
@@ -31,8 +36,8 @@ public class ExpenseService {
         expense.setValue(expenseDTO.getValue());
         expense.setDescription(expenseDTO.getDescription());
         expense.setDate(expenseDTO.getDate());
-        expense.setCategory(expenseDTO.getCategory());
-        expense.setUser(expenseDTO.getUser());
+        expense.setCategory(expenseCategoryRepository.findById(expenseDTO.getCategoryId()).get());
+        expense.setUser(usersRepository.findById(expenseDTO.getUserId()).get());
         expenseRepository.save(expense);
     }
 
@@ -40,7 +45,7 @@ public class ExpenseService {
         ExpenseDTO expenseDTO = null;
         Expense expense = expenseRepository.findById(id).orElse(null);
         if (expense != null) {
-            expenseDTO = new ExpenseDTO(expense.getId(), expense.getValue(), expense.getDescription(), expense.getDate(), expense.getCategory(), expense.getUser());
+            expenseDTO = new ExpenseDTO(expense.getId(), expense.getValue(), expense.getDescription(), expense.getDate(), expense.getCategory().getId(), expense.getUser().getId());
         }
         return expenseDTO;
     }
@@ -49,12 +54,7 @@ public class ExpenseService {
         expenseRepository.deleteById(id);
     }
 
-    public List<ExpenseDTO> obterTodos() {
-        List<ExpenseDTO> expensesDTO = new ArrayList<>();
-        expenseRepository.findAll().forEach(expense -> {
-            ExpenseDTO expenseDTO = new ExpenseDTO(expense.getId(), expense.getValue(), expense.getDescription(), expense.getDate(), expense.getCategory(), expense.getUser());
-            expensesDTO.add(expenseDTO);
-        });
-        return expensesDTO;
+    public List<Expense> obterTodos() {
+        return expenseRepository.findAll();
     }
 }

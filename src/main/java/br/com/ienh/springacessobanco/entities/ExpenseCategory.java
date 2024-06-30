@@ -21,7 +21,8 @@ public class ExpenseCategory {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Expense> expenses;
 
-    public ExpenseCategory() {}
+    public ExpenseCategory() {
+    }
 
     public int getId() {
         return id;
@@ -53,5 +54,14 @@ public class ExpenseCategory {
 
     public void setExpenses(List<Expense> expenses) {
         this.expenses = expenses;
+    }
+
+    @Override
+    public String toString() {
+        return "ExpenseCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

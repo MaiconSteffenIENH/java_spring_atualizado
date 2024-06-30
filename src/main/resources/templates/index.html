@@ -6,13 +6,43 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #2d3e50;
+            color: #ffffff;
+        }
+        .container {
+            margin-top: 5%;
+        }
+        h1 {
+            color: #1abc9c;
+        }
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        .list-group-item {
+            background-color: #324a5f;
+            border: none;
+            color: #ffffff;
+        }
+        .list-group-item a {
+            color: #1abc9c;
+        }
+        .list-group-item a:hover {
+            color: #16a085;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container">
     <div class="row">
         <div class="col-12 d-flex justify-content-between align-items-center mb-4">
-            <h1 th:inline="text">Olá <span th:text="${#authentication.name}"> anonimo </span>!</h1>
-
+            <h1 th:inline="text">Olá <span th:text="${#authentication.name}">anonimo</span>!</h1>
             <form th:action="@{/logout}" method="post" class="d-inline">
                 <button type="submit" class="btn btn-danger">Sair</button>
             </form>
@@ -28,7 +58,7 @@
                     <a href="/incomes/listar" class="text-decoration-none">Receitas</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="income-categories/listar" class="text-decoration-none">Categorias de Receitas</a>
+                    <a href="/income-categories/listar" class="text-decoration-none">Categorias de Receitas</a>
                 </li>
                 <li class="list-group-item">
                     <a href="/expenses/listar" class="text-decoration-none">Despesas</a>

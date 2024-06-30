@@ -12,7 +12,7 @@
 <div class="container mt-4">
     <h1>Editar Categoria de Despesa</h1>
 
-    <form th:action="@{/templates/expense-categories/editar}" th:object="${category}" method="post" class="mt-3">
+    <form th:action="@{/expense-categories/editar}" th:object="${expenseCategory}" method="post" class="mt-3">
         <input type="hidden" th:field="*{id}">
         <div class="form-group">
             <label for="name">Nome:</label>

@@ -2,14 +2,12 @@ package br.com.ienh.springacessobanco.services;
 
 import br.com.ienh.springacessobanco.dto.IncomeDTO;
 import br.com.ienh.springacessobanco.entities.Income;
-import br.com.ienh.springacessobanco.entities.Users;
 import br.com.ienh.springacessobanco.repositories.IncomeCategoryRepository;
 import br.com.ienh.springacessobanco.repositories.IncomeRepository;
 import br.com.ienh.springacessobanco.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

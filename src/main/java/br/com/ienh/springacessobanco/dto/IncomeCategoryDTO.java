@@ -3,10 +3,8 @@ package br.com.ienh.springacessobanco.dto;
 import br.com.ienh.springacessobanco.entities.Users;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.security.core.userdetails.User;
 
 public class IncomeCategoryDTO {
-
     private int id;
 
     @NotBlank

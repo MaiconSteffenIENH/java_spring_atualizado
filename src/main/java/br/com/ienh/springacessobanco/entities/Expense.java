@@ -29,7 +29,8 @@ public class Expense {
     @JoinColumn(name = "user_id")
     private Users user;
 
-    public Expense() {}
+    public Expense() {
+    }
 
     public int getId() {
         return id;
@@ -77,5 +78,16 @@ public class Expense {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "value=" + value +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", category_id=" + category +
+                ", user_id=" + user +
+                '}';
     }
 }

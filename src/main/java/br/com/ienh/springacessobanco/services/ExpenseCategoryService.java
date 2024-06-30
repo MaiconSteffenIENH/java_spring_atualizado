@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExpenseCategoryService {
@@ -16,27 +17,33 @@ public class ExpenseCategoryService {
     ExpenseCategoryRepository expenseCategoryRepository;
 
     public void salvarExpenseCategory(ExpenseCategoryDTO expenseCategoryDTO) {
-        ExpenseCategory expenseCategory = new ExpenseCategory();
-        expenseCategory.setName(expenseCategoryDTO.getName());
-        expenseCategory.setDescription(expenseCategoryDTO.getDescription());
-        expenseCategoryRepository.save(expenseCategory);
+        if(expenseCategoryDTO.getUserId() == 0) {
+            ExpenseCategory expenseCategory = new ExpenseCategory();
+            expenseCategory.setName(expenseCategoryDTO.getName());
+            expenseCategory.setDescription(expenseCategoryDTO.getDescription());
+            expenseCategoryRepository.save(expenseCategory);
+        }
     }
 
     public void atualizarExpenseCategory(ExpenseCategoryDTO expenseCategoryDTO) {
-        ExpenseCategory expenseCategory = new ExpenseCategory();
-        expenseCategory.setId(expenseCategoryDTO.getId());
-        expenseCategory.setName(expenseCategoryDTO.getName());
-        expenseCategory.setDescription(expenseCategoryDTO.getDescription());
-        expenseCategoryRepository.save(expenseCategory);
+        ExpenseCategory expenseCategory = expenseCategoryRepository.findById(expenseCategoryDTO.getId()).orElse(null);
+        if (expenseCategory != null) {
+            expenseCategory.setName(expenseCategoryDTO.getName() != null ? expenseCategoryDTO.getName() : expenseCategory.getName());
+            expenseCategory.setDescription(expenseCategoryDTO.getDescription() != null ? expenseCategoryDTO.getDescription() : expenseCategory.getDescription());
+            expenseCategoryRepository.save(expenseCategory);
+        }
     }
 
     public ExpenseCategoryDTO obterExpenseCategoryPorId(int id) {
-        ExpenseCategoryDTO expenseCategoryDTO = null;
-        ExpenseCategory expenseCategory = expenseCategoryRepository.findById(id).orElse(null);
-        if (expenseCategory != null) {
-            expenseCategoryDTO = new ExpenseCategoryDTO(expenseCategory.getId(), expenseCategory.getName(), expenseCategory.getDescription());
+        Optional<ExpenseCategory> expenseCategory = expenseCategoryRepository.findById(id);
+        if(expenseCategory.isPresent()) {
+            ExpenseCategory existingExpenseCategory = expenseCategory.get();
+            return new ExpenseCategoryDTO(
+                    existingExpenseCategory.getId(),
+                    existingExpenseCategory.getName(),
+                    existingExpenseCategory.getDescription());
         }
-        return expenseCategoryDTO;
+        return null;
     }
 
     public void excluirExpenseCategory(int id) {
@@ -44,10 +51,12 @@ public class ExpenseCategoryService {
     }
 
     public List<ExpenseCategoryDTO> obterTodos() {
-        List<ExpenseCategoryDTO> expenseCategoriesDTO = new ArrayList<>();
+        List <ExpenseCategoryDTO> expenseCategoriesDTO = new ArrayList<>();
         expenseCategoryRepository.findAll().forEach(expenseCategory -> {
-            ExpenseCategoryDTO expenseCategoryDTO = new ExpenseCategoryDTO(expenseCategory.getId(), expenseCategory.getName(), expenseCategory.getDescription());
-            expenseCategoriesDTO.add(expenseCategoryDTO);
+            expenseCategoriesDTO.add(new ExpenseCategoryDTO(
+                    expenseCategory.getId(),
+                    expenseCategory.getName(),
+                    expenseCategory.getDescription()));
         });
         return expenseCategoriesDTO;
     }
