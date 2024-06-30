@@ -2,7 +2,10 @@ package br.com.ienh.springacessobanco.services;
 
 import br.com.ienh.springacessobanco.dto.IncomeDTO;
 import br.com.ienh.springacessobanco.entities.Income;
+import br.com.ienh.springacessobanco.entities.Users;
+import br.com.ienh.springacessobanco.repositories.IncomeCategoryRepository;
 import br.com.ienh.springacessobanco.repositories.IncomeRepository;
+import br.com.ienh.springacessobanco.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +17,18 @@ public class IncomeService {
 
     @Autowired
     IncomeRepository incomeRepository;
+    @Autowired
+    IncomeCategoryRepository incomeCategoryRepository;
+    @Autowired
+    UsersRepository usersRepository;
 
     public void salvarIncome(IncomeDTO incomeDTO) {
         Income income = new Income();
         income.setValue(incomeDTO.getValue());
         income.setDescription(incomeDTO.getDescription());
         income.setDate(incomeDTO.getDate());
-        income.setCategory(incomeDTO.getCategory());
-        income.setUser(incomeDTO.getUser());
+        income.setCategory(incomeCategoryRepository.findById(incomeDTO.getCategoryId()).get());
+        income.setUser(usersRepository.findById(incomeDTO.getUserId()).get());
         incomeRepository.save(income);
     }
 
@@ -31,8 +38,8 @@ public class IncomeService {
         income.setValue(incomeDTO.getValue());
         income.setDescription(incomeDTO.getDescription());
         income.setDate(incomeDTO.getDate());
-        income.setCategory(incomeDTO.getCategory());
-        income.setUser(incomeDTO.getUser());
+        income.setCategory(incomeCategoryRepository.findById(incomeDTO.getCategoryId()).get());
+        income.setUser(usersRepository.findById(incomeDTO.getUserId()).get());
         incomeRepository.save(income);
     }
 
@@ -40,7 +47,7 @@ public class IncomeService {
         IncomeDTO incomeDTO = null;
         Income income = incomeRepository.findById(id).orElse(null);
         if (income != null) {
-            incomeDTO = new IncomeDTO(income.getId(), income.getValue(), income.getDescription(), income.getDate(), income.getCategory(), income.getUser());
+            incomeDTO = new IncomeDTO(income.getId(), income.getValue(), income.getDescription(), income.getDate(), income.getCategory().getId(), income.getUser().getId());
         }
         return incomeDTO;
     }
@@ -49,12 +56,7 @@ public class IncomeService {
         incomeRepository.deleteById(id);
     }
 
-    public List<IncomeDTO> obterTodos() {
-        List<IncomeDTO> incomesDTO = new ArrayList<>();
-        incomeRepository.findAll().forEach(income -> {
-            IncomeDTO incomeDTO = new IncomeDTO(income.getId(), income.getValue(), income.getDescription(), income.getDate(), income.getCategory(), income.getUser());
-            incomesDTO.add(incomeDTO);
-        });
-        return incomesDTO;
+    public List<Income> obterTodos() {
+        return incomeRepository.findAll();
     }
 }

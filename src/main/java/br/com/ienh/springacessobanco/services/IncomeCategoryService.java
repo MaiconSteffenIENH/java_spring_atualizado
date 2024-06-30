@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IncomeCategoryService {
@@ -16,27 +17,34 @@ public class IncomeCategoryService {
     IncomeCategoryRepository incomeCategoryRepository;
 
     public void salvarIncomeCategory(IncomeCategoryDTO incomeCategoryDTO) {
-        IncomeCategory incomeCategory = new IncomeCategory();
-        incomeCategory.setName(incomeCategoryDTO.getName());
-        incomeCategory.setDescription(incomeCategoryDTO.getDescription());
-        incomeCategoryRepository.save(incomeCategory);
+        if (incomeCategoryDTO.getUserId() == 0) {
+            IncomeCategory incomeCategory = new IncomeCategory();
+            incomeCategory.setName(incomeCategoryDTO.getName());
+            incomeCategory.setDescription(incomeCategoryDTO.getDescription());
+            incomeCategoryRepository.save(incomeCategory);
+        }
     }
 
     public void atualizarIncomeCategory(IncomeCategoryDTO incomeCategoryDTO) {
-        IncomeCategory incomeCategory = new IncomeCategory();
-        incomeCategory.setId(incomeCategoryDTO.getId());
-        incomeCategory.setName(incomeCategoryDTO.getName());
-        incomeCategory.setDescription(incomeCategoryDTO.getDescription());
-        incomeCategoryRepository.save(incomeCategory);
+        IncomeCategory incomeCategory = incomeCategoryRepository.findById(incomeCategoryDTO.getId()).orElse(null);
+        if (incomeCategory != null) {
+            incomeCategory.setName(incomeCategoryDTO.getName() != null ? incomeCategoryDTO.getName() : incomeCategory.getName());
+            incomeCategory.setDescription(incomeCategoryDTO.getDescription() != null ? incomeCategoryDTO.getDescription() : incomeCategory.getDescription());
+            incomeCategoryRepository.save(incomeCategory);
+        }
     }
 
     public IncomeCategoryDTO obterIncomeCategoryPorId(int id) {
-        IncomeCategoryDTO incomeCategoryDTO = null;
-        IncomeCategory incomeCategory = incomeCategoryRepository.findById(id).orElse(null);
-        if (incomeCategory != null) {
-            incomeCategoryDTO = new IncomeCategoryDTO(incomeCategory.getId(), incomeCategory.getName(), incomeCategory.getDescription());
+        Optional<IncomeCategory> incomeCategory = incomeCategoryRepository.findById(id);
+        if(incomeCategory.isPresent()) {
+            IncomeCategory existingIncomeCategory = incomeCategory.get();
+            IncomeCategoryDTO incomeCategoryDTO = new IncomeCategoryDTO();
+            incomeCategoryDTO.setId(existingIncomeCategory.getId());
+            incomeCategoryDTO.setName(existingIncomeCategory.getName());
+            incomeCategoryDTO.setDescription(existingIncomeCategory.getDescription());
+            return incomeCategoryDTO;
         }
-        return incomeCategoryDTO;
+        return null;
     }
 
     public void excluirIncomeCategory(int id) {
@@ -46,7 +54,10 @@ public class IncomeCategoryService {
     public List<IncomeCategoryDTO> obterTodos() {
         List<IncomeCategoryDTO> incomeCategoriesDTO = new ArrayList<>();
         incomeCategoryRepository.findAll().forEach(incomeCategory -> {
-            IncomeCategoryDTO incomeCategoryDTO = new IncomeCategoryDTO(incomeCategory.getId(), incomeCategory.getName(), incomeCategory.getDescription());
+            IncomeCategoryDTO incomeCategoryDTO = new IncomeCategoryDTO();
+            incomeCategoryDTO.setId(incomeCategory.getId());
+            incomeCategoryDTO.setName(incomeCategory.getName());
+            incomeCategoryDTO.setDescription(incomeCategory.getDescription());
             incomeCategoriesDTO.add(incomeCategoryDTO);
         });
         return incomeCategoriesDTO;

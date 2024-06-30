@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Listar Categorias de Receita</title>
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
@@ -23,19 +21,22 @@
         </thead>
         <tbody>
         <!-- Iterar sobre a lista de categorias de receita e exibir cada uma -->
-        <tr th:each="category : ${categories}">
-            <td th:text="${category.id}"></td>
-            <td th:text="${category.name}"></td>
-            <td th:text="${category.description}"></td>
+        <tr th:each="incomeCategories : ${incomeCategories}">
+            <td th:text="${incomeCategories.id}"></td>
+            <td th:text="${incomeCategories.name}"></td>
+            <td th:text="${incomeCategories.description}"></td>
             <td>
-                <a th:href="@{/incomeCategories/editar/{id}(id=${category.id})}" class="btn btn-primary btn-sm">Editar</a>
-                <a th:href="@{/incomeCategories/excluir/{id}(id=${category.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                <a th:href="@{/income-categories/editar/{id}(id=${incomeCategories.id})}"
+                   class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/income-categories/excluir/{id}(id=${incomeCategories.id})}"
+                   class="btn btn-danger btn-sm">Excluir</a>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <a href="/incomeCategories/novo" class="btn btn-success">Nova Categoria</a>
+    <a href="/income-categories/novo" class="btn btn-success">Nova Categoria</a>
+    <a href="/" class="btn btn-success">Tela inicial</a>
 </div>
 
 <!-- Bootstrap JS (opcional, se necessário) -->

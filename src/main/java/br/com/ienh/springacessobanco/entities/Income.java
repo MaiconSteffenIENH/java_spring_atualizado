@@ -85,8 +85,8 @@ public class Income {
                 "value=" + value +
                 ", description='" + description + '\'' +
                 ", date=" + date +
-                ", category=" + category +
-                ", user=" + user +
+                ", category_id=" + category +
+                ", user_id=" + user +
                 '}';
     }
 }

@@ -1,15 +1,23 @@
 package br.com.ienh.springacessobanco.dto;
 
+import br.com.ienh.springacessobanco.entities.Users;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.security.core.userdetails.User;
+
 public class IncomeCategoryDTO {
+
     private int id;
+
+    @NotBlank
     private String name;
+
     private String description;
 
-    public IncomeCategoryDTO(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+    @NotNull
+    private int userId;
+
+    private Users user;
 
     public int getId() {
         return id;
@@ -33,5 +41,21 @@ public class IncomeCategoryDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

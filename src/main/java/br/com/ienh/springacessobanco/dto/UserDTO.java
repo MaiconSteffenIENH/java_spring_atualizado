@@ -1,6 +1,8 @@
 package br.com.ienh.springacessobanco.dto;
 
-public class UserDTO {
+import br.com.ienh.springacessobanco.entities.Users;
+
+public class UserDTO extends Users {
     private int id;
     private String name;
     private String email;

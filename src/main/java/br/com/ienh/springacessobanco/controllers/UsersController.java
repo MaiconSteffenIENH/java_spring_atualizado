@@ -42,7 +42,8 @@ public class UsersController {
 
     @GetMapping("/editar/{id}")
     public String editarForm(@PathVariable int id, Model model){
-        model.addAttribute("user", usersService.obterUserPorId(id));
+        model.addAttribute("user",
+                usersService.obterUserPorId(id));
         return "/users/editarForm";
     }
 
