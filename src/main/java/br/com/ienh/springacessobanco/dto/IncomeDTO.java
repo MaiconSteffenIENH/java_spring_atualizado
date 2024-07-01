@@ -1,7 +1,5 @@
 package br.com.ienh.springacessobanco.dto;
 
-import br.com.ienh.springacessobanco.entities.IncomeCategory;
-
 import java.time.LocalDate;
 
 public class IncomeDTO {

@@ -7,6 +7,34 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #2d3e50;
+            color: #ffffff;
+        }
+        .card {
+            background-color: #324a5f;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #1abc9c;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #16a085;
+        }
+        .form-label {
+            color: #ffffff;
+        }
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1abc9c;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -14,6 +42,7 @@
         <div class="col-md-6">
             <div class="card mt-5">
                 <div class="card-body">
+                    <div class="welcome-message">BEM VINDO AO SISTEMA FINANCEIRO PESSOAL</div>
                     <h2 class="card-title text-center">Login</h2>
                     <div th:if="${param.error}" class="alert alert-danger" role="alert">
                         Usuário ou senha inválidos.

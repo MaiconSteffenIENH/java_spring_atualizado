@@ -1,8 +1,6 @@
 package br.com.ienh.springacessobanco.controllers;
 
-import br.com.ienh.springacessobanco.dto.IncomeCategoryDTO;
 import br.com.ienh.springacessobanco.dto.IncomeDTO;
-import br.com.ienh.springacessobanco.dto.UserDTO;
 import br.com.ienh.springacessobanco.services.IncomeCategoryService;
 import br.com.ienh.springacessobanco.services.IncomeService;
 import br.com.ienh.springacessobanco.services.UsersService;
@@ -19,10 +17,8 @@ public class IncomesController {
 
     @Autowired
     private IncomeService incomeService;
-
     @Autowired
     private UsersService usersService;
-
     @Autowired
     private IncomeCategoryService incomeCategoryService;
 

@@ -1,32 +1,33 @@
 package br.com.ienh.springacessobanco.dto;
 
-import br.com.ienh.springacessobanco.entities.ExpenseCategory;
-import br.com.ienh.springacessobanco.entities.Users;
-
 import java.time.LocalDate;
 
 public class ExpenseDTO {
-    private int id;
+    private Integer id;
     private double value;
     private String description;
     private LocalDate date;
-    private ExpenseCategory category;
-    private Users user;
+    private Integer categoryId;
+    private Integer userId;
 
-    public ExpenseDTO(int id, double value, String description, LocalDate date, ExpenseCategory category, Users user) {
+    public ExpenseDTO() {
+
+    }
+
+    public ExpenseDTO(Integer id, double value, String description, LocalDate date, Integer categoryId, Integer userId) {
         this.id = id;
         this.value = value;
         this.description = description;
         this.date = date;
-        this.category = category;
-        this.user = user;
+        this.categoryId = categoryId;
+        this.userId = userId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,19 +55,19 @@ public class ExpenseDTO {
         this.date = date;
     }
 
-    public ExpenseCategory getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(ExpenseCategory category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Users getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

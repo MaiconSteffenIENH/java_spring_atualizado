@@ -23,19 +23,19 @@
         </thead>
         <tbody>
         <!-- Iterar sobre a lista de categorias de despesa e exibir cada uma -->
-        <tr th:each="category : ${categories}">
+        <tr th:each="category : ${expenseCategories}">
             <td th:text="${category.id}"></td>
             <td th:text="${category.name}"></td>
             <td th:text="${category.description}"></td>
             <td>
-                <a th:href="@{/templates/expense-categories/editar/{id}(id=${category.id})}" class="btn btn-primary btn-sm">Editar</a>
-                <a th:href="@{/templates/expense-categories/excluir/{id}(id=${category.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                <a th:href="@{/expense-categories/editar/{id}(id=${category.id})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/expense-categories/excluir/{id}(id=${category.id})}" class="btn btn-danger btn-sm">Excluir</a>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <a href="/expenseCategories/novo" class="btn btn-success">Nova Categoria</a>
+    <a href="/expense-categories/novo" class="btn btn-success">Nova Categoria</a>
     <a href="/" class="btn btn-success">Tela inicial</a>
 </div>
 
