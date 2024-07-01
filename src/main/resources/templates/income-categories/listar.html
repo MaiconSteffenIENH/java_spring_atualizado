@@ -4,10 +4,54 @@
     <meta charset="UTF-8">
     <title>Listar Categorias de Receita</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #2d3e50;
+            color: #ffffff;
+        }
+        .container {
+            margin-top: 4%;
+        }
+        h1 {
+            color: #1abc9c;
+            text-align: center;
+        }
+        .table {
+            background-color: #324a5f;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .thead-dark th {
+            background-color: #1abc9c;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #1abc9c;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #16a085;
+        }
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        .btn-success {
+            background-color: #27ae60;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #229954;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container mt-4">
+<div class="container">
     <h1>Listagem de Categorias de Receita</h1>
 
     <table class="table table-bordered table-striped mt-3">
@@ -21,22 +65,24 @@
         </thead>
         <tbody>
         <!-- Iterar sobre a lista de categorias de receita e exibir cada uma -->
-        <tr th:each="incomeCategories : ${incomeCategories}">
-            <td th:text="${incomeCategories.id}"></td>
-            <td th:text="${incomeCategories.name}"></td>
-            <td th:text="${incomeCategories.description}"></td>
+        <tr th:each="incomeCategory : ${incomeCategories}">
+            <td th:text="${incomeCategory.id}"></td>
+            <td th:text="${incomeCategory.name}"></td>
+            <td th:text="${incomeCategory.description}"></td>
             <td>
-                <a th:href="@{/income-categories/editar/{id}(id=${incomeCategories.id})}"
+                <a th:href="@{/income-categories/editar/{id}(id=${incomeCategory.id})}"
                    class="btn btn-primary btn-sm">Editar</a>
-                <a th:href="@{/income-categories/excluir/{id}(id=${incomeCategories.id})}"
+                <a th:href="@{/income-categories/excluir/{id}(id=${incomeCategory.id})}"
                    class="btn btn-danger btn-sm">Excluir</a>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <a href="/income-categories/novo" class="btn btn-success">Nova Categoria</a>
-    <a href="/" class="btn btn-success">Tela inicial</a>
+    <div class="text-center mt-3">
+        <a href="/users/novo" class="btn btn-success">Nova Categoria</a>
+        <a href="/" class="btn btn-success">Tela inicial</a>
+    </div>
 </div>
 
 <!-- Bootstrap JS (opcional, se necessário) -->

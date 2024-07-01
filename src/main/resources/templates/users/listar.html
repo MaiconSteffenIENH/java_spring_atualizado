@@ -19,13 +19,12 @@
         }
         .table {
             background-color: #324a5f;
-            color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
         }
-        .table thead {
+        .thead-dark th {
             background-color: #1abc9c;
-        }
-        .table thead th {
-            color: #ffffff;
+            border: none;
         }
         .btn-primary {
             background-color: #1abc9c;
@@ -51,11 +50,11 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container mt-4">
     <h1>Listagem de Usuários</h1>
 
     <table class="table table-bordered table-striped mt-3">
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Nome</th>
