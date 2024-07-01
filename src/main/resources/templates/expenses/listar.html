@@ -6,41 +6,89 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #2d3e50;
+            color: #ffffff;
+        }
+        .container {
+            margin-top: 4%;
+        }
+        h1 {
+            color: #1abc9c;
+            text-align: center;
+        }
+        .table {
+            background-color: #324a5f;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .thead-dark th {
+            background-color: #1abc9c;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #1abc9c;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #16a085;
+        }
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        .btn-success {
+            background-color: #27ae60;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #229954;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container mt-4">
     <h1>Listagem de Despesas</h1>
 
-    <table class="table table-bordered table-striped mt-3">
-        <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Valor</th>
-            <th>Descrição</th>
-            <th>Data</th>
-            <th>Categoria</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Iterar sobre a lista de despesas e exibir cada uma -->
-        <tr th:each="expense : ${expenses}">
-            <td th:text="${expense.id}"></td>
-            <td th:text="${expense.value}"></td>
-            <td th:text="${expense.description}"></td>
-            <td th:text="${expense.date}"></td>
-            <td th:text="${expense.category.name}"></td>
-            <td>
-                <a th:href="@{/expenses/editar/{id}(id=${expense.id})}" class="btn btn-primary btn-sm">Editar</a>
-                <a th:href="@{/expenses/excluir/{id}(id=${expense.id})}" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Valor</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterar sobre a lista de despesas e exibir cada uma -->
+            <tr th:each="expense : ${expenses}">
+                <td th:text="${expense.id}"></td>
+                <td th:text="${expense.value}"></td>
+                <td th:text="${expense.description}"></td>
+                <td th:text="${expense.date}"></td>
+                <td th:text="${expense.category.name}"></td>
+                <td>
+                    <a th:href="@{/expenses/editar/{id}(id=${expense.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    <a th:href="@{/expenses/excluir/{id}(id=${expense.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <a href="/expenses/novo" class="btn btn-success">Nova Despesa</a>
-    <a href="/" class="btn btn-success">Tela inicial</a>
+    <div class="text-center mt-3">
+        <a href="/users/novo" class="btn btn-success">Nova Despesa</a>
+        <a href="/" class="btn btn-success">Tela inicial</a>
+    </div>
 </div>
 
 <!-- Bootstrap JS (opcional, se necessário) -->
